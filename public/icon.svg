@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Tło -->
+  <rect width="200" height="200" fill="#16a34a" rx="40"/>
+  
+  <!-- Główna belka drewna -->
+  <rect x="40" y="70" width="120" height="20" fill="#ffffff" opacity="0.9" rx="2"/>
+  <rect x="40" y="100" width="120" height="20" fill="#ffffff" opacity="0.8" rx="2"/>
+  <rect x="40" y="130" width="120" height="20" fill="#ffffff" opacity="0.7" rx="2"/>
+  
+  <!-- Symbol kalkulatora - znak równości -->
+  <rect x="50" y="160" width="30" height="4" fill="#ffffff" opacity="0.9" rx="2"/>
+  <rect x="50" y="170" width="30" height="4" fill="#ffffff" opacity="0.9" rx="2"/>
+  
+  <!-- Cyfry/wynik -->
+  <text x="100" y="175" font-family="system-ui, sans-serif" font-size="24" font-weight="bold" fill="#ffffff" text-anchor="middle">m³</text>
+  
+  <!-- Dodatkowe elementy wizualne - śruby/gwoździe -->
+  <circle cx="50" cy="80" r="3" fill="#ffffff" opacity="0.6"/>
+  <circle cx="150" cy="80" r="3" fill="#ffffff" opacity="0.6"/>
+  <circle cx="50" cy="140" r="3" fill="#ffffff" opacity="0.6"/>
+  <circle cx="150" cy="140" r="3" fill="#ffffff" opacity="0.6"/>
+</svg> 

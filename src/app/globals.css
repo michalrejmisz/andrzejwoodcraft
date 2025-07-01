@@ -1,13 +1,31 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #16a34a; /* green-600 - zielony akcent związany z drewnem */
+  --primary-dark: #15803d; /* green-700 */
+  --primary-light: #22c55e; /* green-500 */
+  --secondary: #f3f4f6; /* gray-100 */
+  --secondary-dark: #e5e7eb; /* gray-200 */
+  --border: #d1d5db; /* gray-300 */
+  --muted: #6b7280; /* gray-500 */
+  --error: #dc2626; /* red-600 */
+  --success: #16a34a; /* green-600 */
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-light: var(--primary-light);
+  --color-secondary: var(--secondary);
+  --color-secondary-dark: var(--secondary-dark);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-error: var(--error);
+  --color-success: var(--success);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -16,11 +34,45 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --secondary: #1f2937; /* gray-800 */
+    --secondary-dark: #111827; /* gray-900 */
+    --border: #374151; /* gray-700 */
+    --muted: #9ca3af; /* gray-400 */
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-size: 16px; /* Minimum 16px zgodnie z wymaganiami dostępności */
+  line-height: 1.5;
+}
+
+/* Zapewnienie minimum 48x48px dla elementów interaktywnych */
+button,
+input[type='button'],
+input[type='submit'],
+.btn {
+  min-height: 44px; /* 44px to minimum dla touch targets zgodnie z WCAG */
+  min-width: 44px;
+  touch-action: manipulation;
+}
+
+/* Ustawienia dla lepszej dostępności */
+*:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Animacje minimalne zgodnie z PRD */
+* {
+  transition: all 150ms ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
 }
