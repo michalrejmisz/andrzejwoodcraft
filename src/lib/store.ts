@@ -184,9 +184,10 @@ export const useWoodCalcStore = create<WoodCalcStore>()(
         set({ currentProject: newProject })
       },
       
-      saveProject: () => {
+      saveProject: (projectId) => {
         // W MVP zapisujemy tylko aktualny projekt
         // W przyszłości można dodać zapisywanie wielu projektów
+        console.log(projectId)
       },
     
       loadProject: (projectId) => {
@@ -220,19 +221,6 @@ export const useWoodCalcStore = create<WoodCalcStore>()(
     }),
     {
       name: 'woodcalc-storage', // klucz w localStorage
-      // Serializacja dat - zustand/persist ma problemy z Date objektami
-      serialize: (state) => JSON.stringify(state, (key, value) => {
-        if (value instanceof Date) {
-          return { __type: 'Date', value: value.toISOString() }
-        }
-        return value
-      }),
-      deserialize: (str) => JSON.parse(str, (key, value) => {
-        if (value && value.__type === 'Date') {
-          return new Date(value.value)
-        }
-        return value
-      }),
     }
   )
 ) 
