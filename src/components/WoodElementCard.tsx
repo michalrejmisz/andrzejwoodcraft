@@ -31,26 +31,24 @@ export default function WoodElementCard({ element }: WoodElementCardProps) {
 
       {/* Szczegóły elementu */}
       <div className="space-y-3">
-        {/* Wymiary i ilość */}
-        <div className="grid grid-cols-2 gap-4 text-sm">
-          <div>
-            <span className="text-muted">Wymiary:</span>
-            <div className="font-medium text-foreground">
+        {/* Wymiary, ilość i cena w jednym wierszu - flex z fixed szerokościami */}
+        <div className="flex gap-1 sm:gap-2 text-sm">
+          <div className="flex-1 min-w-0 pr-1">
+            <span className="text-muted block">Wymiary:</span>
+            <div className="font-medium text-foreground truncate">
               {formatDimensions(element.length, element.width, element.thickness)}
             </div>
           </div>
-          <div>
-            <span className="text-muted">Ilość:</span>
-            <div className="font-medium text-foreground">{element.quantity} szt.</div>
+          <div className="w-16 sm:w-20 min-w-0">
+            <span className="text-muted block">Ilość:</span>
+            <div className="font-medium text-foreground truncate">{element.quantity} szt.</div>
           </div>
-        </div>
-
-        {/* Cena za m³ */}
-        <div className="text-sm">
-          <span className="text-muted">Cena za m³:</span>
-          <span className="font-medium text-foreground ml-2">
-            {formatCost(element.pricePerM3)} PLN
-          </span>
+          <div className="w-20 sm:w-24 min-w-0">
+            <span className="text-muted block">Cena/m³:</span>
+            <div className="font-medium text-foreground truncate">
+              {formatCost(element.pricePerM3)} PLN
+            </div>
+          </div>
         </div>
 
         {/* Separator */}
