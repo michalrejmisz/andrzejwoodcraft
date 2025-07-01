@@ -30,14 +30,15 @@ export default function ProjectSummary() {
     return cost.toFixed(2).replace('.', ',')
   }
 
-  const formatDate = (date: Date) => {
+  const formatDate = (date: Date | string) => {
+    const dateObj = typeof date === 'string' ? new Date(date) : date
     return new Intl.DateTimeFormat('pl-PL', {
       day: '2-digit',
       month: '2-digit',
       year: 'numeric',
       hour: '2-digit',
       minute: '2-digit',
-    }).format(date)
+    }).format(dateObj)
   }
 
   // Funkcja eksportu do PNG
