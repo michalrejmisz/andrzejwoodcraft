@@ -67,7 +67,7 @@ export default function ProjectSummary() {
 
       // Pobierz plik
       const link = document.createElement('a')
-      link.download = `woodcalc-${currentProject.name}-${new Date().toISOString().split('T')[0]}.png`
+      link.download = `warsztat-andrzeja-${currentProject.name}-${new Date().toISOString().split('T')[0]}.png`
       link.href = dataUrl
       link.click()
 
@@ -76,11 +76,13 @@ export default function ProjectSummary() {
         // Konwertuj data URL na blob
         const response = await fetch(dataUrl)
         const blob = await response.blob()
-        const file = new File([blob], `woodcalc-${currentProject.name}.png`, { type: 'image/png' })
+        const file = new File([blob], `warsztat-andrzeja-${currentProject.name}.png`, {
+          type: 'image/png',
+        })
 
         if (navigator.canShare({ files: [file] })) {
           await navigator.share({
-            title: 'WoodCalc - Podsumowanie projektu',
+            title: 'Warsztat Andrzeja - Podsumowanie projektu',
             text: `Projekt: ${currentProject.name}`,
             files: [file],
           })
@@ -109,7 +111,7 @@ export default function ProjectSummary() {
         style={{ width: '400px' }}
       >
         <div className="text-center mb-4">
-          <h1 className="text-2xl font-bold text-primary mb-2">WoodCalc</h1>
+          <h1 className="text-2xl font-bold text-primary mb-2">Warsztat Andrzeja</h1>
           <h2 className="text-lg font-semibold text-gray-800">{currentProject.name}</h2>
           <p className="text-sm text-gray-600">{formatDate(currentProject.updatedAt)}</p>
         </div>
@@ -135,7 +137,9 @@ export default function ProjectSummary() {
           </div>
         </div>
 
-        <div className="text-center mt-4 text-xs text-gray-500">Wygenerowano przez WoodCalc</div>
+        <div className="text-center mt-4 text-xs text-gray-500">
+          Wygenerowano przez Warsztat Andrzeja
+        </div>
       </div>
 
       {/* Widoczne podsumowanie */}

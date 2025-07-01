@@ -1,6 +1,6 @@
 {
-  "name": "WoodCalc",
-  "short_name": "WoodCalc",
+  "name": "Warsztat Andrzeja",
+  "short_name": "Warsztat Andrzeja",
   "description": "Kalkulator objętości i kosztu elementów drewnianych dla stolarzy",
   "start_url": "/",
   "display": "standalone",

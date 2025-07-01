@@ -13,25 +13,25 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'WoodCalc - Kalkulator Drewna',
+  title: 'Warsztat Andrzeja - Kalkulator Drewna',
   description:
     'Kalkulator objętości i kosztu elementów drewnianych dla stolarzy. Szybko oblicz ile drewna potrzebujesz i ile to będzie kosztować.',
   keywords: ['kalkulator drewna', 'objętość drewna', 'koszt drewna', 'stolarz', 'kalkulacja'],
-  authors: [{ name: 'WoodCalc' }],
-  creator: 'WoodCalc',
+  authors: [{ name: 'Warsztat Andrzeja' }],
+  creator: 'Warsztat Andrzeja',
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'WoodCalc',
+    title: 'Warsztat Andrzeja',
   },
   formatDetection: {
     telephone: false,
   },
   openGraph: {
     type: 'website',
-    siteName: 'WoodCalc',
-    title: 'WoodCalc - Kalkulator Drewna',
+    siteName: 'Warsztat Andrzeja',
+    title: 'Warsztat Andrzeja - Kalkulator Drewna',
     description: 'Kalkulator objętości i kosztu elementów drewnianych dla stolarzy',
   },
 }
@@ -55,7 +55,7 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="WoodCalc" />
+        <meta name="apple-mobile-web-app-title" content="Warsztat Andrzeja" />
         <link rel="apple-touch-icon" href="/icon-192.png" />
 
         {/* Service Worker Registration */}

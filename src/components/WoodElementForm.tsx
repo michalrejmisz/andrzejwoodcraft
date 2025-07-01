@@ -26,6 +26,7 @@ export default function WoodElementForm() {
   const [formData, setFormData] = useState<FormData>(initialFormData)
   const [isOpen, setIsOpen] = useState(false)
   const [errors, setErrors] = useState<Partial<FormData>>({})
+  const [lastPricePerM3, setLastPricePerM3] = useState<number>(0)
 
   const addElement = useWoodCalcStore((state) => state.addElement)
 
@@ -59,6 +60,9 @@ export default function WoodElementForm() {
       return
     }
 
+    // Zapamietaj cenę za m³
+    setLastPricePerM3(formData.pricePerM3)
+
     // Dodaj element do store
     addElement({
       name: formData.name || 'Element',
@@ -69,8 +73,11 @@ export default function WoodElementForm() {
       pricePerM3: formData.pricePerM3,
     })
 
-    // Reset formularza
-    setFormData(initialFormData)
+    // Reset formularza z zachowaniem ceny
+    setFormData({
+      ...initialFormData,
+      pricePerM3: formData.pricePerM3, // zachowaj cenę z poprzedniego elementu
+    })
     setErrors({})
     setIsOpen(false)
   }
@@ -99,7 +106,13 @@ export default function WoodElementForm() {
     return (
       <div className="p-4">
         <button
-          onClick={() => setIsOpen(true)}
+          onClick={() => {
+            // Jeśli jest zapisana ostatnia cena, użyj jej
+            if (lastPricePerM3 > 0 && formData.pricePerM3 === 0) {
+              setFormData((prev) => ({ ...prev, pricePerM3: lastPricePerM3 }))
+            }
+            setIsOpen(true)
+          }}
           className="w-full bg-primary hover:bg-primary-dark text-white font-semibold py-4 px-6 rounded-lg flex items-center justify-center gap-3 text-lg transition-colors shadow-lg"
           aria-label="Dodaj nowy element drewniany"
         >
@@ -117,7 +130,11 @@ export default function WoodElementForm() {
         <button
           onClick={() => {
             setIsOpen(false)
-            setFormData(initialFormData)
+            // Zachowaj cenę przy anulowaniu
+            setFormData({
+              ...initialFormData,
+              pricePerM3: lastPricePerM3 > 0 ? lastPricePerM3 : 0,
+            })
             setErrors({})
           }}
           className="p-2 text-muted hover:text-foreground transition-colors"
@@ -214,11 +231,11 @@ export default function WoodElementForm() {
           <label htmlFor="quantity" className="block text-sm font-medium text-foreground mb-2">
             Ilość (szt.) *
           </label>
-          <div className="flex items-center gap-2">
+          <div className="flex items-stretch">
             <button
               type="button"
               onClick={() => adjustQuantity(-1)}
-              className="bg-secondary-dark hover:bg-border text-foreground font-bold py-3 px-4 rounded-lg text-xl transition-colors min-w-[48px]"
+              className="bg-secondary-dark hover:bg-border text-foreground font-bold px-4 rounded-l-lg text-xl transition-colors w-12 flex items-center justify-center"
               aria-label="Zmniejsz ilość"
             >
               −
@@ -229,14 +246,14 @@ export default function WoodElementForm() {
               min="1"
               value={formData.quantity}
               onChange={(e) => handleInputChange('quantity', parseInt(e.target.value) || 1)}
-              className={`flex-1 px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-base text-center ${
+              className={`flex-1 px-4 py-3 border-t border-b focus:ring-2 focus:ring-primary focus:border-primary text-base text-center ${
                 errors.quantity ? 'border-error' : 'border-border'
               }`}
             />
             <button
               type="button"
               onClick={() => adjustQuantity(1)}
-              className="bg-secondary-dark hover:bg-border text-foreground font-bold py-3 px-4 rounded-lg text-xl transition-colors min-w-[48px]"
+              className="bg-secondary-dark hover:bg-border text-foreground font-bold px-4 rounded-r-lg text-xl transition-colors w-12 flex items-center justify-center"
               aria-label="Zwiększ ilość"
             >
               +
@@ -281,7 +298,10 @@ export default function WoodElementForm() {
             type="button"
             onClick={() => {
               setIsOpen(false)
-              setFormData(initialFormData)
+              setFormData({
+                ...initialFormData,
+                pricePerM3: lastPricePerM3 > 0 ? lastPricePerM3 : 0,
+              })
               setErrors({})
             }}
             className="bg-secondary-dark hover:bg-border text-foreground font-semibold py-4 px-6 rounded-lg transition-colors text-lg"

@@ -28,21 +28,9 @@ export default function Home() {
               <CubeIcon className="h-8 w-8 text-white" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-primary">WoodCalc</h1>
-              <p className="text-sm text-muted">Kalkulator drewna dla stolarzy</p>
+              <h1 className="text-2xl font-bold text-primary">Warsztat Andrzeja</h1>
             </div>
           </div>
-
-          {currentProject && (
-            <div className="mt-3 pt-3 border-t border-border">
-              <h2 className="text-lg font-semibold text-foreground">{currentProject.name}</h2>
-              <p className="text-sm text-muted">
-                {currentProject.elements.length === 0
-                  ? 'Dodaj pierwszy element aby rozpocząć'
-                  : `${currentProject.elements.length} elementów w projekcie`}
-              </p>
-            </div>
-          )}
         </div>
       </header>
 
