@@ -38,7 +38,7 @@ interface WoodCalcStore {
   
   // Funkcje do zarządzania projektem
   createNewProject: (name?: string) => void
-  saveProject: () => void
+  saveProject: (projectId: string) => void
   loadProject: (projectId: string) => void
   
   // Funkcje pomocnicze
@@ -189,10 +189,11 @@ export const useWoodCalcStore = create<WoodCalcStore>()(
         // W przyszłości można dodać zapisywanie wielu projektów
       },
     
-      loadProject: (_projectId) => {
+      loadProject: (projectId) => {
         // W MVP tylko jeden projekt, więc nie implementujemy
         // W przyszłości można dodać ładowanie konkretnego projektu
-      },
+        console.log(projectId)
+    },
       
       calculateTotals: () => {
         const state = get()
