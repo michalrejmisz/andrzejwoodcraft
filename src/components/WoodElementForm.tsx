@@ -148,7 +148,7 @@ export default function WoodElementForm() {
         {/* Nazwa elementu (opcjonalna) */}
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-            Nazwa elementu (opcjonalna)
+            NAZWA ELEMENTU (OPCJONALNA)
           </label>
           <input
             id="name"
@@ -160,11 +160,14 @@ export default function WoodElementForm() {
           />
         </div>
 
-        {/* Wymiary */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div>
-            <label htmlFor="length" className="block text-sm font-medium text-foreground mb-2">
-              Długość (cm) *
+        {/* Wymiary - inline layout */}
+        <div className="space-y-3">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <label
+              htmlFor="length"
+              className="text-sm font-medium text-foreground w-16 sm:w-20 flex-shrink-0"
+            >
+              DŁUGOŚĆ:
             </label>
             <input
               id="length"
@@ -173,19 +176,20 @@ export default function WoodElementForm() {
               min="0.1"
               value={formData.length || ''}
               onChange={(e) => handleInputChange('length', parseFloat(e.target.value) || 0)}
-              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-base ${
+              className={`flex-1 px-2 sm:px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-base min-w-0 ${
                 errors.length ? 'border-error' : 'border-border'
               }`}
-              placeholder="150"
+              placeholder="cm"
             />
-            {errors.length && (
-              <p className="text-error text-sm mt-1">Wprowadź długość większą od 0</p>
-            )}
+            {errors.length && <p className="text-error text-sm ml-1">!</p>}
           </div>
 
-          <div>
-            <label htmlFor="width" className="block text-sm font-medium text-foreground mb-2">
-              Szerokość (cm) *
+          <div className="flex items-center gap-2 sm:gap-3">
+            <label
+              htmlFor="width"
+              className="text-sm font-medium text-foreground w-16 sm:w-20 flex-shrink-0"
+            >
+              SZEROKOŚĆ:
             </label>
             <input
               id="width"
@@ -194,19 +198,20 @@ export default function WoodElementForm() {
               min="0.1"
               value={formData.width || ''}
               onChange={(e) => handleInputChange('width', parseFloat(e.target.value) || 0)}
-              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-base ${
+              className={`flex-1 px-2 sm:px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-base min-w-0 ${
                 errors.width ? 'border-error' : 'border-border'
               }`}
-              placeholder="20"
+              placeholder="cm"
             />
-            {errors.width && (
-              <p className="text-error text-sm mt-1">Wprowadź szerokość większą od 0</p>
-            )}
+            {errors.width && <p className="text-error text-sm ml-1">!</p>}
           </div>
 
-          <div>
-            <label htmlFor="thickness" className="block text-sm font-medium text-foreground mb-2">
-              Grubość (cm) *
+          <div className="flex items-center gap-2 sm:gap-3">
+            <label
+              htmlFor="thickness"
+              className="text-sm font-medium text-foreground w-16 sm:w-20 flex-shrink-0"
+            >
+              GRUBOŚĆ:
             </label>
             <input
               id="thickness"
@@ -215,27 +220,28 @@ export default function WoodElementForm() {
               min="0.1"
               value={formData.thickness || ''}
               onChange={(e) => handleInputChange('thickness', parseFloat(e.target.value) || 0)}
-              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-base ${
+              className={`flex-1 px-2 sm:px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-base min-w-0 ${
                 errors.thickness ? 'border-error' : 'border-border'
               }`}
-              placeholder="10"
+              placeholder="cm"
             />
-            {errors.thickness && (
-              <p className="text-error text-sm mt-1">Wprowadź grubość większą od 0</p>
-            )}
+            {errors.thickness && <p className="text-error text-sm ml-1">!</p>}
           </div>
         </div>
 
         {/* Ilość z przyciskami +/- */}
-        <div>
-          <label htmlFor="quantity" className="block text-sm font-medium text-foreground mb-2">
-            Ilość (szt.) *
+        <div className="flex items-center gap-2 sm:gap-3">
+          <label
+            htmlFor="quantity"
+            className="text-sm font-medium text-foreground w-16 sm:w-20 flex-shrink-0"
+          >
+            ILOŚĆ:
           </label>
-          <div className="flex items-stretch">
+          <div className="flex items-stretch flex-1 border border-border rounded-lg overflow-hidden min-h-[44px]">
             <button
               type="button"
               onClick={() => adjustQuantity(-1)}
-              className="bg-secondary-dark hover:bg-border text-foreground font-bold px-4 rounded-l-lg text-xl transition-colors w-12 flex items-center justify-center"
+              className="bg-secondary-dark hover:bg-border text-foreground font-bold text-xl transition-colors w-12 sm:w-14 flex items-center justify-center border-r border-border"
               aria-label="Zmniejsz ilość"
             >
               −
@@ -246,28 +252,27 @@ export default function WoodElementForm() {
               min="1"
               value={formData.quantity}
               onChange={(e) => handleInputChange('quantity', parseInt(e.target.value) || 1)}
-              className={`flex-1 px-4 py-3 border-t border-b focus:ring-2 focus:ring-primary focus:border-primary text-base text-center ${
-                errors.quantity ? 'border-error' : 'border-border'
-              }`}
+              className="flex-1 px-2 py-2 focus:ring-2 focus:ring-primary focus:outline-none text-base text-center border-0 min-w-0"
             />
             <button
               type="button"
               onClick={() => adjustQuantity(1)}
-              className="bg-secondary-dark hover:bg-border text-foreground font-bold px-4 rounded-r-lg text-xl transition-colors w-12 flex items-center justify-center"
+              className="bg-secondary-dark hover:bg-border text-foreground font-bold text-xl transition-colors w-12 sm:w-14 flex items-center justify-center border-l border-border"
               aria-label="Zwiększ ilość"
             >
               +
             </button>
           </div>
-          {errors.quantity && (
-            <p className="text-error text-sm mt-1">Ilość musi być większa od 0</p>
-          )}
+          {errors.quantity && <p className="text-error text-sm ml-1">!</p>}
         </div>
 
         {/* Cena za m³ */}
-        <div>
-          <label htmlFor="pricePerM3" className="block text-sm font-medium text-foreground mb-2">
-            Cena za m³ (PLN) *
+        <div className="flex items-center gap-2 sm:gap-3">
+          <label
+            htmlFor="pricePerM3"
+            className="text-sm font-medium text-foreground w-16 sm:w-20 flex-shrink-0"
+          >
+            CENA/M³:
           </label>
           <input
             id="pricePerM3"
@@ -276,14 +281,12 @@ export default function WoodElementForm() {
             min="0.01"
             value={formData.pricePerM3 || ''}
             onChange={(e) => handleInputChange('pricePerM3', parseFloat(e.target.value) || 0)}
-            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-base ${
+            className={`flex-1 px-2 sm:px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-base min-w-0 ${
               errors.pricePerM3 ? 'border-error' : 'border-border'
             }`}
-            placeholder="500"
+            placeholder="PLN"
           />
-          {errors.pricePerM3 && (
-            <p className="text-error text-sm mt-1">Wprowadź cenę większą od 0</p>
-          )}
+          {errors.pricePerM3 && <p className="text-error text-sm ml-1">!</p>}
         </div>
 
         {/* Przyciski akcji */}

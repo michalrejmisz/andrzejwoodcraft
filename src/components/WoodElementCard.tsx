@@ -1,21 +1,13 @@
 'use client'
 
-import { TrashIcon, CubeIcon } from '@heroicons/react/24/outline'
-import { WoodElement, useWoodCalcStore } from '@/lib/store'
+import { CubeIcon } from '@heroicons/react/24/outline'
+import { WoodElement } from '@/lib/store'
 
 interface WoodElementCardProps {
   element: WoodElement
 }
 
 export default function WoodElementCard({ element }: WoodElementCardProps) {
-  const removeElement = useWoodCalcStore((state) => state.removeElement)
-
-  const handleDelete = () => {
-    if (confirm('Czy na pewno chcesz usunąć ten element?')) {
-      removeElement(element.id)
-    }
-  }
-
   // Formatowanie liczb
   const formatVolume = (volume: number) => {
     return volume.toFixed(3).replace('.', ',')
@@ -32,18 +24,9 @@ export default function WoodElementCard({ element }: WoodElementCardProps) {
   return (
     <div className="bg-white border border-border rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
       {/* Nagłówek karty */}
-      <div className="flex items-start justify-between mb-3">
-        <div className="flex items-center gap-2">
-          <CubeIcon className="h-5 w-5 text-primary" />
-          <h3 className="font-semibold text-foreground text-lg">{element.name}</h3>
-        </div>
-        <button
-          onClick={handleDelete}
-          className="p-2 text-muted hover:text-error hover:bg-red-50 rounded-lg transition-colors"
-          aria-label={`Usuń element ${element.name}`}
-        >
-          <TrashIcon className="h-5 w-5" />
-        </button>
+      <div className="flex items-center gap-2 mb-3">
+        <CubeIcon className="h-5 w-5 text-primary" />
+        <h3 className="font-semibold text-foreground text-lg">{element.name}</h3>
       </div>
 
       {/* Szczegóły elementu */}

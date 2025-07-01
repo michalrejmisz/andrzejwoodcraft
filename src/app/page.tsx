@@ -35,7 +35,7 @@ export default function Home() {
       </header>
 
       {/* Main content */}
-      <main className="max-w-4xl mx-auto px-4 py-6 pb-32">
+      <main className="max-w-4xl mx-auto px-4 py-6 pb-20">
         {/* Formularz dodawania */}
         <section className="mb-8">
           <WoodElementForm />
