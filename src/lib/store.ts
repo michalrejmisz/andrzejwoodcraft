@@ -188,8 +188,8 @@ export const useWoodCalcStore = create<WoodCalcStore>()(
         // W MVP zapisujemy tylko aktualny projekt
         // W przyszłości można dodać zapisywanie wielu projektów
       },
-      
-      loadProject: (projectId) => {
+    
+      loadProject: (_projectId) => {
         // W MVP tylko jeden projekt, więc nie implementujemy
         // W przyszłości można dodać ładowanie konkretnego projektu
       },
